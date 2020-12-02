@@ -1,0 +1,77 @@
+@use '../CSS/base.scss';
+
+body {
+  background: base.$bg-color;
+  margin: 0;
+}
+
+.mobileMenu {
+  display: none;
+  position: fixed;
+  top: 3%;
+  left: 3%;
+  width: 15%;
+  height: auto;
+  z-index: 5;
+}
+
+.grid {
+  display: grid;
+  width: 95vw;
+  height: 100%;
+  grid-template-columns: 80px 1fr;
+  margin-bottom: 20px;
+
+  .wrapper {
+    margin-top: 20px;
+    height: auto;
+    width: inherit;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 30px;
+
+    .itemPokemon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.loading {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: auto;
+  font-family: base.$mainFontFamily;
+  font-weight: bold;
+  font-size: 24px;
+  color: white;
+}
+.none {
+  display: none;
+}
+.show {
+  display: block;
+}
+
+//MEDIA QUERY FOR SCREEN LESS THAN 950PX WIDTH
+@media screen and (max-width: base.$breakpoint1) {
+  .grid .wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+//MEDIA QUERY FOR SCREEN LESS THAN 650PX WIDTH
+@media screen and (max-width: base.$breakpoint2) {
+  .grid {
+    grid-template-columns: 1fr;
+    .wrapper {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .mobileMenu {
+    display: block;
+  }
+}

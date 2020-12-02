@@ -1,0 +1,247 @@
+@use '../CSS/base.scss';
+$pokemonCardW: 300px;
+$pokemonCardH: 350px;
+$pokemonBackColor: #474848;
+$barWidth: 130px;
+$barHeight: 9px;
+$barColor: #ff4e22;
+
+.cardWrapper {
+  width: $pokemonCardW;
+  height: $pokemonCardH;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:hover > .cardGrid {
+    transform: translateX(0);
+  }
+
+  .cardGrid {
+    display: grid;
+    width: $pokemonCardW * 2;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    transition: 600ms;
+    transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+    transform: translateX(-$pokemonCardW);
+
+    .pokemonCardFront {
+      width: $pokemonCardW;
+      height: $pokemonCardH;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-rows: repeat(7, 1fr);
+
+      .pokemonCardFrontBG {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: base.$normalCard;
+        opacity: 0.75;
+        z-index: -1;
+      }
+      .grassBGType {
+        background: base.$grassCard;
+      }
+      .poisonBGType {
+        background: base.$poisonCard;
+      }
+      .waterBGType {
+        background: base.$waterCard;
+      }
+      .fireBGType {
+        background: base.$fireCard;
+      }
+      .flyingBGType {
+        background: base.$flyingCard;
+      }
+      .bugBGType {
+        background: base.$bugCard;
+      }
+      .dragonBGType {
+        background: base.$dragonCard;
+      }
+      .fairyBGType {
+        background: base.$fairyCard;
+      }
+      .earthBGType {
+        background: base.$earthCard;
+      }
+      .normalBGType {
+        background: base.$normalCard;
+      }
+      .metalBGType {
+        background: base.$metalCard;
+      }
+      .snowBGType {
+        background: base.$snowCard;
+      }
+
+      .pokemonArt {
+        grid-row: 1 / 4;
+        justify-self: center;
+        align-self: end;
+        position: relative;
+
+        img {
+          position: absolute;
+          height: auto;
+          width: 70%;
+          transform: translate(20%, -60%);
+        }
+      }
+      .pokemonName {
+        grid-row: 4/7;
+        text-align: center;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        justify-items: center;
+        align-items: start;
+        h2 {
+          margin: 0;
+          color: white;
+          text-shadow: 1px 1px 0 black, -1px -1px 0 black;
+          font-size: 35px;
+          font-family: base.$mainFontFamily;
+        }
+        h3 {
+          margin: 0;
+          align-self: start;
+          padding: 5px 25px;
+          color: #fff7f7;
+          font-family: base.$mainFontFamily;
+          font-size: 20px;
+          background: rgba(0, 0, 0, 0.48);
+          border-radius: 35px;
+          width: min-content;
+        }
+      }
+
+      .pokemonTypes {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: repeat(auto, 1fr);
+        grid-template-rows: 1fr;
+
+        span {
+          justify-self: center;
+          align-self: start;
+          padding: 5px 10px;
+          background: base.$typeNormal;
+          border: 1px solid black;
+          font-family: base.$mainFontFamily;
+          font-weight: bold;
+          color: white;
+          font-size: 18px;
+        }
+        .grassTag {
+          background: base.$typeGrass;
+        }
+        .poisonTag {
+          background: base.$typePoison;
+        }
+        .fireTag {
+          background: base.$typeFire;
+        }
+        .waterTag {
+          background: base.$typeWater;
+        }
+        .fairyTag {
+          background: base.$typeFairy;
+        }
+        .earthTag {
+          background: base.$typeEarth;
+        }
+        .bugTag {
+          background: base.$typeBug;
+        }
+        .flyingTag {
+          background: base.$typeFlying;
+        }
+        .normalTag {
+          background: base.$typeNormal;
+        }
+        .dragonTag {
+          background: base.$typeDragon;
+        }
+        .metalTag {
+          background: base.$typeMetal;
+          color: black;
+        }
+        .snowTag {
+          background: base.$typeSnow;
+          color: black;
+        }
+      }
+    }
+
+    .pokemonCardBack {
+      background: $pokemonBackColor;
+      border: 1px solid black;
+      display: grid;
+      grid-template-rows: 40% 50% 10%;
+
+      .backArt {
+        justify-self: center;
+        align-self: center;
+        text-align: center;
+        .backImage {
+          width: 40%;
+          height: auto;
+          background: white;
+          padding: 0 10px;
+        }
+      }
+      .backStats {
+        display: grid;
+        grid-template-rows: repeat(6, 1fr);
+        grid-template-columns: 1fr;
+        grid-gap: 5px;
+        .statItem {
+          display: grid;
+          grid-template-columns: 40% 50% 10%;
+          span {
+            font-family: base.$mainFontFamily;
+            color: white;
+            font-weight: bold;
+            justify-self: start;
+          }
+          .statName {
+            justify-self: end;
+          }
+
+          .statBar[statwidth] {
+            justify-self: center;
+            align-self: center;
+            background: #f89c85de;
+            border-radius: 20px;
+            width: $barWidth;
+            height: $barHeight;
+            position: relative;
+            overflow: hidden;
+
+            .statProgress {
+              height: 101%;
+              position: absolute;
+              background: $barColor;
+              border-radius: 20px;
+              top: 0;
+              left: 0;
+            }
+          }
+        }
+      }
+      .backWeight {
+        font-family: base.$mainFontFamily;
+        color: white;
+        font-weight: bold;
+        margin-left: 30px;
+        align-self: center;
+      }
+    }
+  }
+}

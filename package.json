@@ -1,0 +1,46 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "A web where you can see the pokemons, items and berries of the pokemon games",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack serve",
+    "start": "webpack --config webpack.prod.js"
+  },
+  "author": "Kevin Cheng",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "preact": "^10.5.7",
+    "preact-compat": "^3.19.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "react-toastify": "^6.1.0",
+    "sass": "^1.29.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-react": "^7.12.7",
+    "@svgr/webpack": "^5.5.0",
+    "babel-loader": "^8.2.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.1",
+    "css-minimizer-webpack-plugin": "^1.1.5",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^4.5.0",
+    "mini-css-extract-plugin": "^1.3.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^2.0.0",
+    "svg-react-loader": "^0.4.6",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.7.0",
+    "webpack-bundle-analyzer": "^4.2.0",
+    "webpack-cli": "^4.2.0",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

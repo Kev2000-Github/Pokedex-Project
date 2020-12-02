@@ -1,0 +1,102 @@
+$HeaderColor: #000;
+$bg-color: linear-gradient(to top, #9890e3 0%, #b1f4cf 100%);
+//MEDIA QUERY BREAKPOINTS
+$breakpoint1: 1100px;
+$breakpoint2: 810px;
+//CARD COLORS
+$grassCard: radial-gradient(
+  circle farthest-corner at 50% 105px,
+  rgba(255, 255, 255, 1) 0%,
+  rgba(48, 160, 81, 1) 38%,
+  rgba(48, 160, 81, 1) 100%
+);
+$poisonCard: radial-gradient(
+  circle farthest-corner at 50% 105px,
+  rgba(255, 255, 255, 1) 0%,
+  rgb(131, 55, 106) 38%,
+  rgba(100, 32, 77, 1) 100%
+);
+$earthCard: radial-gradient(
+  circle farthest-corner at 50% 105px,
+  rgba(255, 255, 255, 1) 0%,
+  rgb(185, 157, 94) 38%,
+  rgba(175, 141, 68, 1) 100%
+);
+$fireCard: radial-gradient(
+  circle farthest-corner at 50% 105px,
+  rgba(255, 255, 255, 1) 0%,
+  rgba(252, 107, 50, 1) 38%,
+  rgba(240, 86, 25, 1) 100%
+);
+$fairyCard: radial-gradient(
+  circle farthest-corner at 50% 105px,
+  rgba(255, 255, 255, 1) 0%,
+  rgb(253, 75, 215) 38%,
+  rgba(255, 5, 201, 1) 100%
+);
+$waterCard: radial-gradient(
+  circle farthest-corner at 50% 105px,
+  rgba(255, 255, 255, 1) 0%,
+  rgb(60, 177, 212) 38%,
+  rgba(9, 160, 206, 1) 100%
+);
+
+$flyingCard: radial-gradient(
+  circle farthest-corner at 50% 105px,
+  rgba(255, 255, 255, 1) 0%,
+  rgb(116, 118, 250) 38%,
+  rgba(71, 74, 245, 1) 100%
+);
+$dragonCard: radial-gradient(
+  circle farthest-corner at 50% 105px,
+  rgba(255, 255, 255, 1) 0%,
+  rgb(150, 152, 247) 38%,
+  rgba(31, 4, 153, 1) 100%
+);
+$bugCard: radial-gradient(
+  circle farthest-corner at 50% 105px,
+  rgba(255, 255, 255, 1) 0%,
+  rgb(114, 167, 94) 38%,
+  rgba(86, 146, 62, 1) 100%
+);
+$normalCard: radial-gradient(
+  circle farthest-corner at 50% 105px,
+  rgba(255, 255, 255, 1) 0%,
+  rgb(185, 185, 173, 1) 38%,
+  rgba(122, 122, 113, 1) 100%
+);
+$metalCard: radial-gradient(
+  circle farthest-corner at 50% 105px,
+  rgba(255, 255, 255, 1) 0%,
+  rgba(228, 228, 228, 1) 38%,
+  rgba(184, 184, 184, 1) 100%
+);
+$snowCard: radial-gradient(
+  circle farthest-corner at 50% 105px,
+  rgba(255, 255, 255, 1) 0%,
+  rgb(222, 247, 248) 38%,
+  rgb(198, 250, 252) 100%
+);
+//TYPE COLORS
+$typeGrass: rgba(10, 189, 70, 0.9);
+$typePoison: rgba(100, 32, 77, 0.9);
+$typeEarth: rgba(175, 141, 68, 0.9);
+$typeFire: rgba(240, 86, 25, 0.9);
+$typeFairy: rgba(255, 5, 201, 0.9);
+$typeWater: rgba(9, 160, 206, 0.9);
+$typeFlying: rgba(71, 74, 245, 0.9);
+$typeDragon: rgba(31, 4, 153, 0.9);
+$typeBug: rgba(86, 146, 62, 0.9);
+$typeNormal: rgba(122, 122, 113, 0.9);
+$typeMetal: rgba(184, 184, 184, 0.9);
+$typeSnow: rgb(198, 250, 252);
+//FONTS
+$mainFontFamily: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+//DEFAULT CARD BERRIES
+$defaultCard: radial-gradient(
+  circle farthest-corner at 50% 55px,
+  rgba(255, 255, 255, 1) 0%,
+  rgb(185, 185, 173, 1) 38%,
+  rgba(122, 122, 113, 1) 100%
+);
