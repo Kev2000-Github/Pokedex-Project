@@ -149,7 +149,10 @@ const App=()=>{
             }
         }
         catch(error){
-            notify(`El pokemon ${url.split('/')[6]} no existe`);
+            const urlParsed=url.split('/');
+            const searchTerm = urlParsed[6];
+            const category = urlParsed[5];
+            notify(`El ${category} ${searchTerm} no existe`);
         }
     }
 
