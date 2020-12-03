@@ -1,5 +1,4 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -42,7 +41,6 @@ module.exports={
         ]
     },
     plugins:[
-        new BundleAnalyzerPlugin(),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({filename: 'style.css'}),
     ],
