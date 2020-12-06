@@ -182,7 +182,6 @@ const App=()=>{
         const query=apiURL.split('/')[6];
         const isNotSearch=/^\?/.test(query);
         const isOffset=/offset=/.test(query);
-        console.log('serach',isNotSearch);
         if(isNotSearch){
             if(!isOffset) fetchInfo(true, false);
             else fetchInfo()
