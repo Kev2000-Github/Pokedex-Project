@@ -11,7 +11,7 @@ module.exports={
         path: path.resolve(__dirname,'dir'),
         filename: '[name]-bundle.js'
     },
-    mode: 'production',
+    mode: 'development',
     module: {
         rules:[
             {
@@ -44,7 +44,5 @@ module.exports={
             template: path.resolve(__dirname,'src','index.html'),
             favicon: path.resolve(__dirname,'src','assets','images','pokemon.ico')
             }),
-        new BundleAnalyzerPlugin(),
-        new CleanWebpackPlugin(),
     ],
 }

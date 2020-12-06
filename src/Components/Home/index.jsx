@@ -41,7 +41,7 @@ const App=()=>{
         if(observer.current) observer.current.disconnect();
         observer.current= new IntersectionObserver(entries =>{
             if(entries[0].isIntersecting){
-                if(nextBatch) getPokemons(nextBatch);
+                if(nextBatch) setApiURL(nextBatch);
             }
         })
         if(node) observer.current.observe(node);
@@ -58,7 +58,7 @@ const App=()=>{
         if(searchTerm=='') return;
         const newURL= apiURL.split('/');
         newURL[6]=searchTerm;
-        getPokemons(newURL.join("/"),true,true);
+        setApiURL(newURL.join('/'));
     }
 
     const renderSwitch=(link, data)=>{
@@ -71,10 +71,10 @@ const App=()=>{
                     <Suspense fallback={<div/>}>
                     <Card  
                                 pokemon={{name:pokemon.name,
-                                stats: pokemon.stats,
-                                art: pokemon.sprites.other['official-artwork']['front_default'],
-                                weight: pokemon.weight,
-                                types: pokemon.types,
+                                stats: pokemon?.stats,
+                                art: pokemon.sprites?.other?.['official-artwork']?.['front_default'],
+                                weight: pokemon?.weight,
+                                types: pokemon?.types,
                                 id: pokemon.id
                                 }}
                             />
@@ -120,40 +120,42 @@ const App=()=>{
         toast.warn(message, {position: toast.POSITION.TOP_RIGHT});
     }
 
-    const getPokemons=async (url, clear=false, search=false)=>{
+    const getPokemons=async (url,search=false)=>{
         setIsLoading(true);
         try{
             const response=await axios.get(url);
             const items=response.data.results;
-            const itemDetails=[];
-            if(!search){
-                for(let i=0;i<items.length;i++){
-                    itemDetails.push((await axios.get(items[i]['url'])).data);
-                }
+            let itemDetails=[];
+            if(search){
+                itemDetails.push(response.data);
             }
-            else itemDetails.push(response.data);
+            else{
+                itemDetails = await Promise.all(items.map(async (item) => ((await axios.get(item['url'])).data)));
+            } 
             if(apiURL.split('/')[5]=='berry'){
                 for(let i=0;i<itemDetails.length;i++){
                     const res=await axios.get(itemDetails[i].item.url);
                     itemDetails[i]['sprite']= res.data.sprites.default;
                 }
             }
-            setNextBatch(response.data.next);
-            if(!clear){
-                setPokemons(prevPokemons=> {
-                    return [...prevPokemons, ...itemDetails];
-                });
-            }
-            else{
-                setPokemons(itemDetails);
-            }
+            return {
+                next: search?null:response.data.next,
+                itemDetails
+            } 
         }
         catch(error){
-            const urlParsed=url.split('/');
-            const searchTerm = urlParsed[6];
-            const category = urlParsed[5];
-            notify(`El ${category} ${searchTerm} no existe`);
+            if(axios.isCancel(error)){
+                return;
+            }
+            if(error.response?.status==404){
+                setPokemons([]);
+                const urlParsed=url.split('/');
+                const searchTerm = urlParsed[6];
+                const category = urlParsed[5];
+                notify(`El ${category}: ${searchTerm} no existe`);
+            }
         }
+        return;
     }
 
     useEffect(()=>{ //SET LOADING AS FALSE
@@ -161,7 +163,34 @@ const App=()=>{
     },[pokemons])
 
     useEffect(()=>{ //GET POKEMON/ITEMS FROM API
-        getPokemons(apiURL,true);
+        let ignore=false;
+        const fetchInfo=async (clear=false, search=false)=>{
+            const {next, itemDetails} = await getPokemons(apiURL, search);
+            if(!ignore){
+                if(!clear){
+                    setPokemons(prevPokemons=> {
+                        return [...prevPokemons, ...itemDetails];
+                    });
+                    setNextBatch(next==undefined?null:next);
+                }
+                else{
+                    setNextBatch(next);
+                    setPokemons(itemDetails);       
+                }
+            }
+        }
+        const query=apiURL.split('/')[6];
+        const isNotSearch=/^\?/.test(query);
+        const isOffset=/offset=/.test(query);
+        console.log('serach',isNotSearch);
+        if(isNotSearch){
+            if(!isOffset) fetchInfo(true, false);
+            else fetchInfo()
+        }
+        else{
+            fetchInfo(true,true);
+        }
+        return ()=>{ignore=true}
     },[apiURL])
 
     return(

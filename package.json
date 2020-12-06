@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack serve",
-    "build": "webpack --config webpack.prod.js"
+    "dev": "webpack serve --config webpack.config.js",
+    "build": "webpack --config webpack.prod.js",
+    "prod": "webpack serve --config webpack.prod.js"
   },
   "author": "Kevin Cheng",
   "license": "ISC",
